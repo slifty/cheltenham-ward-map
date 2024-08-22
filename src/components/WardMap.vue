@@ -4,9 +4,11 @@
 
 <script lang="ts">
 import 'leaflet/dist/leaflet.css'
+import '@geoapify/leaflet-address-search-plugin/dist/L.Control.GeoapifyAddressSearch.min.css'
 import type GeoJSON from 'geojson'
 import { defineComponent } from 'vue'
 import L from 'leaflet'
+import '@geoapify/leaflet-address-search-plugin'
 import polylabel from 'polylabel'
 import { wardGeoJson } from '../data/wardGeoJson'
 
@@ -60,6 +62,30 @@ function addWardPolygon(map: L.Map, wardFeatureData: GeoJSON.GeoJsonObject) {
 	wardFeatureGeoJson.addTo(map)
 }
 
+function addAddressSearch(map: L.Map) {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const addressSearchControl = (L.control as any).addressSearch(
+		'6db172c824474328b92769853b10c2a8', // there's no backend so... I guess we're just gonna publish this lol.
+		{
+			position: 'topright',
+			resultCallback: (address: { lat: number, lon: number }) => {
+				const newMarker = L.circleMarker(
+					[
+						address.lat,
+						address.lon,
+					],
+					{
+						radius: 5,
+						color: 'red',
+					},
+				)
+				newMarker.addTo(map)
+			},
+		},
+	)
+	map.addControl(addressSearchControl)
+}
+
 export default defineComponent({
 	name: 'WardMap',
 	props: {},
@@ -73,6 +99,7 @@ export default defineComponent({
 				addWardPolygon(map, wardFeatureData)
 				addWardLabel(map, wardFeatureData)
 			})
+			addAddressSearch(map)
 		},
 	},
 	mounted() : void {

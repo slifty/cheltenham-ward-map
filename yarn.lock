@@ -903,6 +903,11 @@
     "@babel/helper-validator-identifier" "^7.14.9"
     to-fast-properties "^2.0.0"
 
+"@geoapify/leaflet-address-search-plugin@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@geoapify/leaflet-address-search-plugin/-/leaflet-address-search-plugin-1.0.2.tgz#49c0cda1d1f2d389ee999ece37f41730b5bb101d"
+  integrity sha512-V8k/uZmeBJ8a+UKRRWbbVI9eeSDymzjpD6/IN6FNNFh6mGJgDiVvG8tEF+b215njgpXl7BRxkUId2A1LPXR+Wg==
+
 "@hapi/address@2.x.x":
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/@hapi/address/-/address-2.1.4.tgz#5d67ed43f3fd41a69d4b9ff7b56e7c0d1d0a81e5"
